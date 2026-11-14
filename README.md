@@ -8,6 +8,5 @@ I want to build data pipelines that move and clean real-world data.
 
 ## What I've learned so far
 - Linux basics: navigating folders, managing files
-- Reading and filtering log files with grep, cat, head, tai# Data Engineering Journey
-
-
+- Reading and filtering log files with grep, cat, head, tail
+- Git and GitHub: commits, branches, push, pull requests
