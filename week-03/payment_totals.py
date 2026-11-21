@@ -1,31 +1,12 @@
 import os
 
+import my_tools
+
 DATA_PATH = os.path.expanduser("~/de-bootcamp/ostad-de-bootcamp/module-02/data/raw_sales.txt")
 
 
-def read_lines(path):
-    with open(path, encoding="utf-8") as f:
-        return f.readlines()
-
-
-def clean_amount(text):
-    return float(text.replace("৳", "").replace(",", "").strip())
-
-
-def clean_text(text):
-    return text.strip().lower()
-
-
-def taka(amount):
-    return f"৳{amount:.2f}"
-
-
-def row(name, count, total):
-    return f"{name:<18}{count}টা   {taka(total)}"
-
-
 def main():
-    lines = read_lines(DATA_PATH)
+    lines = my_tools.read_lines(DATA_PATH)
 
     bkash_count = 0
     bkash_total = 0
@@ -40,9 +21,9 @@ def main():
 
     for line in lines:
         parts = line.split(";")
-        amount = clean_amount(parts[5])
-        payment = clean_text(parts[6])
-        status = clean_text(parts[7])
+        amount = my_tools.clean_amount(parts[5])
+        payment = my_tools.clean_text(parts[6])
+        status = my_tools.clean_text(parts[7])
 
         if status == "cancelled":
             continue
@@ -67,13 +48,13 @@ def main():
 
     print("payment ধরে হিসাব (বাতিল বাদে)")
     print()
-    print(row("bkash", bkash_count, bkash_total))
-    print(row("nagad", nagad_count, nagad_total))
-    print(row("card", card_count, card_total))
-    print(row("rocket", rocket_count, rocket_total))
-    print(row("cash on delivery", cod_count, cod_total))
+    print(my_tools.row("bkash", bkash_count, bkash_total))
+    print(my_tools.row("nagad", nagad_count, nagad_total))
+    print(my_tools.row("card", card_count, card_total))
+    print(my_tools.row("rocket", rocket_count, rocket_total))
+    print(my_tools.row("cash on delivery", cod_count, cod_total))
     print()
-    print(f"সব মিলিয়ে: {taka(grand_total)}")
+    print(f"সব মিলিয়ে: {my_tools.taka(grand_total)}")
 
 
 if __name__ == "__main__":
